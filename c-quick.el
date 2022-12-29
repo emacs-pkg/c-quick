@@ -5,7 +5,7 @@
 ;;
 ;; Author: JavaCommons Technologies
 ;; URL: https://github.com/emacs-pkg/c-quick
-;; Version: v2.5.2
+;; Version: v2.5.3
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -130,7 +130,7 @@
 (setq bookmark-bmenu-file-column 45)
 
 (unless (boundp 'whitespace-line-column)
-  (setq whitespace-line-column 120))
+  (setq whitespace-line-column 1000000))
 
 (setq whitespace-style
       '(face
