@@ -5,7 +5,7 @@
 ;;
 ;; Author: JavaCommons Technologies
 ;; URL: https://github.com/emacs-pkg/c-quick
-;; Version: v2.6.0
+;; Version: v2.6.1
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -660,7 +660,7 @@
   ;;(xclear)
   ;;(xdump load-path)
   (let* (;;(path (cons user-emacs-directory load-path))
-         (feature-list (if (boundp *get-feature-list*) *get-feature-list* nil))
+         (feature-list (if (boundp '*get-feature-list*) *get-feature-list* nil))
          names
          name)
     ;;(xdump path)
@@ -702,12 +702,14 @@
         ;;(xdump (member name feature-list))
         (when (member name feature-list)
           (find-file (expand-file-name name user-emacs-directory))
+          (message "%s" (expand-file-name name user-emacs-directory))
           (throw :break t)
           )
         (dolist (p load-path)
           (let ((els (ignore-errors (directory-files p nil "[.]el$"))))
             (when (member name els)
               (find-file (expand-file-name name p))
+              (message "%s" (expand-file-name name p))
               (throw :break t)
               )
             )
