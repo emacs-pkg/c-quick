@@ -5,7 +5,7 @@
 ;;
 ;; Author: JavaCommons Technologies
 ;; URL: https://github.com/emacs-pkg/c-quick
-;; Version: v2.5.3
+;; Version: v2.6.0
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -659,11 +659,18 @@
   (interactive)
   ;;(xclear)
   ;;(xdump load-path)
-  (let ((path (cons user-emacs-directory load-path))
-        (names nil)
-        name)
+  (let* (;;(path (cons user-emacs-directory load-path))
+         (feature-list (if (boundp *get-feature-list*) *get-feature-list* nil))
+         names
+         name)
     ;;(xdump path)
-    (dolist (p path)
+    ;;(xdump (expand-file-name "init.el" user-emacs-directory))
+    ;;(xdump (file-exists-p (expand-file-name "init.el" user-emacs-directory)))
+    (when (file-exists-p (expand-file-name "init.el" user-emacs-directory))
+      (push "init.el" feature-list))
+    ;;(xdump feature-list)
+    (setq names (copy-sequence feature-list))
+    (dolist (p load-path)
       ;;(xdump p)
       ;;(xdump (directory-files p nil "[.]el$"))
       (dolist (el (ignore-errors (directory-files p nil "[.]el$")))
@@ -690,7 +697,14 @@
      ((string-suffix-p ".el" name)
       ;;(ding)
       (catch :break
-        (dolist (p path)
+        ;;(xdump feature-list)
+        ;;(xdump name)
+        ;;(xdump (member name feature-list))
+        (when (member name feature-list)
+          (find-file (expand-file-name name user-emacs-directory))
+          (throw :break t)
+          )
+        (dolist (p load-path)
           (let ((els (ignore-errors (directory-files p nil "[.]el$"))))
             (when (member name els)
               (find-file (expand-file-name name p))
