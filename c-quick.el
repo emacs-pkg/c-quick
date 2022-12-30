@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v2.7.2")
+(setq *c-quick-version* "v2.7.3")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2022 JavaCommons Technologies
@@ -24,8 +24,10 @@
 (require 'eshell)
 (require 'find-func)
 
-(defun c-quick-version () (interactive)
-       (message "c-quick %s" *c-quick-version*))
+(defun c-quick-version ()
+  (interactive)
+  (message "c-quick %s" *c-quick-version*)
+  *c-quick-version*)
 
 (global-set-key (kbd "<down>")     'c-quick-down-key)
 (global-set-key (kbd "<up>")       'c-quick-up-key)
