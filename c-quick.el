@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v2.8.1")
+(setq *c-quick-version* "v2.8.2")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2022 JavaCommons Technologies
@@ -51,6 +51,7 @@
 (global-set-key (kbd "<C-up>")       'c-quick-up-quick)
 (global-set-key (kbd "<C-down>")     'c-quick-down-quick)
 
+(global-set-key (kbd "C-x o")        'c-quick-other-window)
 (global-set-key (kbd "C-x C-x")      'c-quick-exchange-point-and-mark)
 
 (global-set-key (kbd "<C-f4>")       'c-quick-kill-current-buffer)
@@ -565,6 +566,18 @@
        (t (error "%s not found" interned))
        )
       (select-window cw))))
+
+(defun c-quick-other-window (count &optional all-frames interactive)
+  (interactive "p\ni\np")
+  (if (>= (length (window-list)) 2)
+      (other-window count all-frames interactive)
+    (save-window-excursion
+      (list-buffers nil)
+      )
+    (switch-to-buffer-other-window "*Buffer List*")
+    )
+  (message "%S" (current-buffer))
+  )
 
 (defun c-quick-exchange-point-and-mark (arg)
   (interactive "P")
