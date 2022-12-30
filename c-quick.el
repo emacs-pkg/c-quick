@@ -5,7 +5,7 @@
 ;;
 ;; Author: JavaCommons Technologies
 ;; URL: https://github.com/emacs-pkg/c-quick
-;; Version: v2.6.1
+;; Version: please see definition of *c-quick-version* below.
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,6 +22,9 @@
 
 (require 'eshell)
 (require 'find-func)
+
+(setq *c-quick-version* "v2.7.0")
+(defun c-quick-version () (interactive) (message "c-quick %s" *c-quick-version*))
 
 (global-set-key (kbd "<down>")     'c-quick-down-key)
 (global-set-key (kbd "<up>")       'c-quick-up-key)
@@ -79,17 +82,44 @@
 (global-set-key (kbd "<S-f6>")     'c-quick-list-bookmarks)
 (global-set-key (kbd "<M-f6>")     'c-quick-list-bookmarks)
 
+(global-set-key (kbd "<C-S-f6>")
+                #'(lambda ()
+                    (interactive)
+                    (tab-new) (c-quick-list-bookmarks)))
+(global-set-key (kbd "<C-M-f6>")
+                #'(lambda ()
+                    (interactive)
+                    (tab-new) (c-quick-list-bookmarks)))
+
 (global-set-key (kbd "<f7>")       'c-quick-list-files)
 (global-set-key (kbd "C-x <f7>")   'c-quick-list-files)
 (global-set-key (kbd "<C-f7>")     'c-quick-list-files)
 (global-set-key (kbd "<S-f7>")     'c-quick-list-files)
 (global-set-key (kbd "<M-f7>")     'c-quick-list-files)
 
+(global-set-key (kbd "<C-S-f7>")
+                #'(lambda ()
+                    (interactive)
+                    (tab-new) (c-quick-list-files)))
+(global-set-key (kbd "<C-M-f7>")
+                #'(lambda ()
+                    (interactive)
+                    (tab-new) (c-quick-list-files)))
+
 (global-set-key (kbd "<f8>")       'c-quick-list-buffers)
 (global-set-key (kbd "C-x <f8>")   'c-quick-list-buffers)
 (global-set-key (kbd "<C-f8>")     'c-quick-list-buffers)
 (global-set-key (kbd "<S-f8>")     'c-quick-list-buffers)
 (global-set-key (kbd "<M-f8>")     'c-quick-list-buffers)
+
+(global-set-key (kbd "<C-S-f8>")
+                #'(lambda ()
+                    (interactive)
+                    (tab-new) (c-quick-list-buffers)))
+(global-set-key (kbd "<C-M-f8>")
+                #'(lambda ()
+                    (interactive)
+                    (tab-new) (c-quick-list-buffers)))
 
 (global-set-key (kbd "<f9>")       'c-quick-toggle-mode)
 (global-set-key (kbd "C-x <f9>")   'c-quick-toggle-mode)
