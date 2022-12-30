@@ -23,8 +23,9 @@
 (require 'eshell)
 (require 'find-func)
 
-(setq *c-quick-version* "v2.7.0")
-(defun c-quick-version () (interactive) (message "c-quick %s" *c-quick-version*))
+(setq *c-quick-version* "v2.7.1")
+(defun c-quick-version () (interactive)
+       (message "c-quick %s" *c-quick-version*))
 
 (global-set-key (kbd "<down>")     'c-quick-down-key)
 (global-set-key (kbd "<up>")       'c-quick-up-key)
