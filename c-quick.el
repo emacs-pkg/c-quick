@@ -1,11 +1,12 @@
 ;; -*- coding: utf-8 -*-
+(setq *c-quick-version* "v2.7.2")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2022 JavaCommons Technologies
 ;;
 ;; Author: JavaCommons Technologies
 ;; URL: https://github.com/emacs-pkg/c-quick
-;; Version: please see definition of *c-quick-version* below.
+;; Version: please see *c-quick-version* above.
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,7 +24,6 @@
 (require 'eshell)
 (require 'find-func)
 
-(setq *c-quick-version* "v2.7.1")
 (defun c-quick-version () (interactive)
        (message "c-quick %s" *c-quick-version*))
 
