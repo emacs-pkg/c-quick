@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v2.8.0")
+(setq *c-quick-version* "v2.8.1")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2022 JavaCommons Technologies
@@ -122,6 +122,10 @@
                     (interactive)
                     (tab-new) (c-quick-list-buffers)))
 (global-set-key (kbd "<C-M-f8>")
+                #'(lambda ()
+                    (interactive)
+                    (tab-new) (c-quick-list-buffers)))
+(global-set-key (kbd "C-S-t")
                 #'(lambda ()
                     (interactive)
                     (tab-new) (c-quick-list-buffers)))
