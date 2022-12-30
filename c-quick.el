@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v2.7.6")
+(setq *c-quick-version* "v2.7.7")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2022 JavaCommons Technologies
