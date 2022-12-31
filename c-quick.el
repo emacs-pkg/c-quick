@@ -1,8 +1,8 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v2.9.0")
+(setq *c-quick-version* "v2.9.1")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
-;; Copyright (C) 1993-2022 JavaCommons Technologies
+;; Copyright (C) 1993-2023 JavaCommons Technologies
 ;;
 ;; Author: JavaCommons Technologies
 ;; URL: https://github.com/emacs-pkg/c-quick
@@ -62,6 +62,8 @@
                     (if (fboundp 'save-buffers-kill-terminal)
                         (save-buffers-kill-terminal)
                       (kill-emacs))))
+
+(global-set-key (kbd "<C-S-f4>")     'tab-close)
 
 (global-set-key (kbd "<f5>")         'c-quick-bookmark-set)
 (global-set-key (kbd "C-x <f5>")     'c-quick-bookmark-set)
