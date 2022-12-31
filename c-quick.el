@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v2.8.2")
+(setq *c-quick-version* "v2.9.0")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2022 JavaCommons Technologies
@@ -567,10 +567,10 @@
        )
       (select-window cw))))
 
-(defun c-quick-other-window (count &optional all-frames interactive)
-  (interactive "p\ni\np")
+(defun c-quick-other-window (count &optional all-frames)
+  (interactive "p")
   (if (>= (length (window-list)) 2)
-      (other-window count all-frames interactive)
+      (other-window count all-frames)
     (save-window-excursion
       (list-buffers nil)
       )
