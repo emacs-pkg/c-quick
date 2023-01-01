@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v2.9.2")
+(setq *c-quick-version* "v3.0.0")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2023 JavaCommons Technologies
@@ -46,7 +46,6 @@
 (global-set-key (kbd "<C-S-tab>" )   'c-quick-tab-next)
 (global-set-key (kbd "<C-S-return>") 'c-quick-tab-next)
 (global-set-key (kbd "<C-S-f3>")     'c-quick-tab-next)
-(global-set-key (kbd "<C-M-f3>")     'c-quick-tab-next)
 
 (global-set-key (kbd "<C-right>")    'c-quick-right-quick)
 (global-set-key (kbd "<C-left>")     'c-quick-left-quick)
@@ -56,6 +55,11 @@
 (global-set-key (kbd "C-x o")        'c-quick-other-window)
 (global-set-key (kbd "C-x C-x")      'c-quick-exchange-point-and-mark)
 
+(global-set-key (kbd "<f3>")          'c-quick-tab-next)
+(global-set-key (kbd "<C-f3>")        'tab-close)
+(global-set-key (kbd "<S-f3>")        'tab-close-other)
+
+(global-set-key (kbd "<f4>")         'c-quick-rotate-buffer)
 (global-set-key (kbd "<C-f4>")       'c-quick-kill-current-buffer)
 (global-set-key (kbd "<S-f4>")       'c-quick-kill-other-buffers)
 (global-set-key (kbd "<M-f4>")
@@ -64,8 +68,6 @@
                     (if (fboundp 'save-buffers-kill-terminal)
                         (save-buffers-kill-terminal)
                       (kill-emacs))))
-
-(global-set-key (kbd "<C-S-f4>")     'tab-close)
 
 (global-set-key (kbd "<f5>")         'c-quick-bookmark-set)
 (global-set-key (kbd "C-x <f5>")     'c-quick-bookmark-set)
