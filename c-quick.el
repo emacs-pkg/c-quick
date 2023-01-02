@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.0.1")
+(setq *c-quick-version* "v3.0.2")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2023 JavaCommons Technologies
@@ -46,7 +46,6 @@
 (global-set-key (kbd "<S-return>")   'c-quick-rotate-buffer)
 (global-set-key (kbd "<C-S-tab>" )   'c-quick-tab-next)
 (global-set-key (kbd "<C-S-return>") 'c-quick-tab-next)
-(global-set-key (kbd "<C-S-f3>")     'c-quick-tab-next)
 
 (global-set-key (kbd "<C-right>")    'c-quick-right-quick)
 (global-set-key (kbd "<C-left>")     'c-quick-left-quick)
@@ -59,6 +58,12 @@
 (global-set-key (kbd "<f3>")          'c-quick-tab-next)
 (global-set-key (kbd "<C-f3>")        'tab-close)
 (global-set-key (kbd "<S-f3>")        'tab-close-other)
+(global-set-key (kbd "<M-f3>")
+                #'(lambda ()
+                    (interactive)
+                    (if (fboundp 'save-buffers-kill-terminal)
+                        (save-buffers-kill-terminal)
+                      (kill-emacs))))
 
 (global-set-key (kbd "<f4>")         'c-quick-rotate-buffer)
 (global-set-key (kbd "<C-f4>")       'c-quick-kill-current-buffer)
