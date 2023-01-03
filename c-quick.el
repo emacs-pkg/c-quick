@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.1.1")
+(setq *c-quick-version* "v3.1.2")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2023 JavaCommons Technologies
@@ -159,7 +159,6 @@
 
 (global-set-key (kbd "<C-S-f12>")    'c-quick-lookup-file-or-function)
 (global-set-key (kbd "<C-M-f12>")    'c-quick-lookup-file-or-function)
-(global-set-key (kbd "C-S-s")        'c-quick-lookup-file-or-function)
 
 ;;; Customization
 
