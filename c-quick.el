@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.1.0")
+(setq *c-quick-version* "v3.1.1")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2023 JavaCommons Technologies
@@ -90,10 +90,6 @@
                 #'(lambda ()
                     (interactive)
                     (eval-buffer) (message "Buffer evaluated.")))
-(global-set-key (kbd "C-S-e")
-                #'(lambda ()
-                    (interactive)
-                    (eval-buffer) (message "Buffer evaluated.")))
 
 (global-set-key (kbd "<f6>")         'c-quick-list-bookmarks)
 (global-set-key (kbd "C-x <f6>")     'c-quick-list-bookmarks)
@@ -136,10 +132,6 @@
                     (interactive)
                     (tab-new) (c-quick-list-buffers)))
 (global-set-key (kbd "<C-M-f8>")
-                #'(lambda ()
-                    (interactive)
-                    (tab-new) (c-quick-list-buffers)))
-(global-set-key (kbd "C-S-t")
                 #'(lambda ()
                     (interactive)
                     (tab-new) (c-quick-list-buffers)))
