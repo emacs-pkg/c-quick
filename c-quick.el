@@ -45,6 +45,7 @@
 (global-set-key (kbd "<S-tab>")      'c-quick-rotate-buffer)
 (global-set-key (kbd "<C-return>")   'c-quick-rotate-buffer)
 (global-set-key (kbd "<S-return>")   'c-quick-rotate-buffer)
+(global-set-key (kbd "<backtab>" )   'c-quick-rotate-buffer)
 (global-set-key (kbd "<C-S-tab>" )   'c-quick-tab-next)
 (global-set-key (kbd "<C-S-return>") 'c-quick-tab-next)
 
