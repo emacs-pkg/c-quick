@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.1.3")
+(setq *c-quick-version* "v3.1.4")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2023 JavaCommons Technologies
@@ -519,6 +519,10 @@
        ((string= buffname "*Completions*") nil)
        ((string= buffname "*Compile-Log*") nil)
        ((string= buffname "*Quail Completions*") nil)
+       ((string= buffname "*Warnings*") nil)
+       ((string= buffname "*Async-native-comile-log*") nil)
+       ((string= buffname "*straight-process*") nil)
+       ((string= buffname "*straight-byte-completion*") nil)
        ;;((string= buffname "*xprint*") nil) ; *xprint*
        ;;((string-match "^[*]" buffname) nil) ; *scratch*, *Help* etc
        ((string-match "^[ ]" buffname) nil) ; work buffer
