@@ -1,8 +1,8 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.1.5")
+(setq *c-quick-version* "v3.1.6")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
-;; Copyright (C) 1993-2023 JavaCommons Technologies
+;; Copyright (C) 1993-2025 JavaCommons Technologies
 ;;
 ;; Author: JavaCommons Technologies
 ;; URL: https://github.com/emacs-pkg/c-quick
@@ -697,23 +697,28 @@
       ;;(xdump fext)
       (if is-eshell
           (setq cmd (format "cd \"%s\" && time . \"./%s\"" dir fname))
-          (setq cmd (format "cd \"%s\" && time \"./%s\"" dir fname))
-          (ignore-errors
-            (set-file-modes (buffer-file-name) (string-to-number "775" 8))
-            )
+        (setq cmd (format "cd \"%s\" && time \"./%s\"" dir fname))
+        (ignore-errors
+          (set-file-modes (buffer-file-name) (string-to-number "775" 8))
+          )
         )
       (delete-other-windows)
       ;;(switch-to-buffer-other-window "*scratch*")
       ;;(lisp-interaction-mode)
       (ignore-errors (kill-buffer "*eshell*"))
-      (save-window-excursion
-        (eshell)
+      (if (save-excursion
+            (goto-char (point-min))
+            (not (looking-at "#!")))
+          (eval-buffer)
+        (save-window-excursion
+          (eshell)
+          )
+        (switch-to-buffer-other-window "*eshell*")
+        (goto-char (point-max))
+        (insert cmd)
+        (eshell-send-input)
+        (select-window win)
         )
-      (switch-to-buffer-other-window "*eshell*")
-      (goto-char (point-max))
-      (insert cmd)
-      (eshell-send-input)
-      (select-window win)
       )
     )
   )
