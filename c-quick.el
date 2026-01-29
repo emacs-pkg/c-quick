@@ -1,8 +1,8 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.1.6")
+(setq *c-quick-version* "v3.1.7")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
-;; Copyright (C) 1993-2025 JavaCommons Technologies
+;; Copyright (C) 1993-2026 JavaCommons Technologies
 ;;
 ;; Author: JavaCommons Technologies
 ;; URL: https://github.com/emacs-pkg/c-quick
@@ -697,7 +697,8 @@
       ;;(xdump fext)
       (if is-eshell
           (setq cmd (format "cd \"%s\" && time . \"./%s\"" dir fname))
-        (setq cmd (format "cd \"%s\" && time \"./%s\"" dir fname))
+        ;;(setq cmd (format "cd \"%s\" && time \"./%s\"" dir fname))
+        (setq cmd (format "cd \"%s\" && start bash -c  './%s'; read -p 'Press enter to continue'" dir fname))
         (ignore-errors
           (set-file-modes (buffer-file-name) (string-to-number "775" 8))
           )
