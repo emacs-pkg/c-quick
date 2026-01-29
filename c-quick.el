@@ -1,5 +1,6 @@
+
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.1.8")
+(setq *c-quick-version* "v3.1.9")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -691,13 +692,14 @@
            (dir (file-name-directory buffer-file-name))
            (fname (file-name-nondirectory buffer-file-name))
            (fext (file-name-extension fname))
-           (is-eshell (or (equal fext "esh") (equal fext "eshell")))
+           ;;(is-eshell (or (equal fext "esh") (equal fext "eshell")))
+           (is-csharp (equal fext "cs"))
            cmd
            )
       ;;(xdump fext)
-      (if is-eshell
-          (setq cmd (format "cd \"%s\" && time . \"./%s\"" dir fname))
-        ;;(setq cmd (format "cd \"%s\" && time \"./%s\"" dir fname))
+      (if is-csharp ;;is-eshell
+          ;;(setq cmd (format "cd \"%s\" && time . \"./%s\"" dir fname))
+          (setq cmd (format "cd \"%s\" && start bash -c  \"dotnet-run './%s'; read -p '[Press enter to continue]'\"" dir fname))
         (setq cmd (format "cd \"%s\" && start bash -c  \"'./%s'; read -p '[Press enter to continue]'\"" dir fname))
         (ignore-errors
           (set-file-modes (buffer-file-name) (string-to-number "775" 8))
@@ -707,10 +709,6 @@
       ;;(switch-to-buffer-other-window "*scratch*")
       ;;(lisp-interaction-mode)
       (ignore-errors (kill-buffer "*eshell*"))
-      (if (save-excursion
-            (goto-char (point-min))
-            (not (looking-at "#!")))
-          (eval-buffer)
         (save-window-excursion
           (eshell)
           )
@@ -719,7 +717,6 @@
         (insert cmd)
         (eshell-send-input)
         (select-window win)
-        )
       )
     )
   )
