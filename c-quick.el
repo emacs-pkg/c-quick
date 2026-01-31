@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.3.0")
+(setq *c-quick-version* "v3.4.0")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -684,18 +684,15 @@
            (dir (file-name-directory buffer-file-name))
            (fname (file-name-nondirectory buffer-file-name))
            (fext (file-name-extension fname))
-           ;;(is-eshell (or (equal fext "esh") (equal fext "eshell")))
-           ;;(is-csharp (equal fext "cs"))
+           (cmd-args (read-string (format "Arguments for '%s': " fname)))
            cmd
            )
       ;;(xdump fext)
-      (setq cmd (format "cd \"%s\" && xrun \"./%s\"" dir fname))
+      (setq cmd (format "cd \"%s\" && xrun './%s %s'" dir fname cmd-args))
       (ignore-errors
         (set-file-modes (buffer-file-name) (string-to-number "775" 8))
         )
       (delete-other-windows)
-      ;;(switch-to-buffer-other-window "*scratch*")
-      ;;(lisp-interaction-mode)
       (ignore-errors (kill-buffer "*eshell*"))
         (save-window-excursion
           (eshell)
