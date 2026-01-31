@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.2.2")
+(setq *c-quick-version* "v3.3.0")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -685,18 +685,13 @@
            (fname (file-name-nondirectory buffer-file-name))
            (fext (file-name-extension fname))
            ;;(is-eshell (or (equal fext "esh") (equal fext "eshell")))
-           (is-csharp (equal fext "cs"))
+           ;;(is-csharp (equal fext "cs"))
            cmd
            )
       ;;(xdump fext)
-      (if is-csharp ;;is-eshell
-          ;;(setq cmd (format "cd \"%s\" && time . \"./%s\"" dir fname))
-          (setq cmd (format "cd \"%s\" && start bash -c  \"dotnet-run './%s'; read -p '[Press enter to continue]'\"" dir fname))
-        ;;(setq cmd (format "cd \"%s\" && start bash -c  \"'./%s'; read -p '[Press enter to continue]'\"" dir fname))
-        (setq cmd (format "cd \"%s\" && xrun \"./%s\"" dir fname))
-        (ignore-errors
-          (set-file-modes (buffer-file-name) (string-to-number "775" 8))
-          )
+      (setq cmd (format "cd \"%s\" && xrun \"./%s\"" dir fname))
+      (ignore-errors
+        (set-file-modes (buffer-file-name) (string-to-number "775" 8))
         )
       (delete-other-windows)
       ;;(switch-to-buffer-other-window "*scratch*")
