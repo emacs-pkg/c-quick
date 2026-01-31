@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.2.0")
+(setq *c-quick-version* "v3.2.1")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -211,27 +211,20 @@
 
 (defun c-quick-toggle-mode ()
   (interactive)
-  (setq *c-quick-mode-is-on* (not *c-quick-mode-is-on*))
-  (c-quick-set-mode *c-quick-mode-is-on*)
+  ;; (setq *c-quick-mode-is-on* (not *c-quick-mode-is-on*))
+  (c-quick-set-mode (not *c-quick-mode-is-on*))
   (cond
    (*c-quick-mode-is-on* (message "c-quick-mode is ON"))
-   (t (message "c-quick-mode is OFF"))))
+   (t (message "c-quick-mode is OFF")))
+  )
 
 (defun c-quick-set-mode (arg)
+  (setq *c-quick-mode-is-on* arg)
   (show-paren-mode 1)
   (cond
    ((and arg (display-graphic-p))
     (setq show-paren-delay 0)
     (setq show-paren-style 'expression)
-    ;; (setq display-fill-column-indicator t)
-    ;; (unless display-fill-column-indicator-character
-    ;;   (setq display-fill-column-indicator-character
-    ;;         (if (and (char-displayable-p ?\u2502)
-    ;;                  (or (not (display-graphic-p))
-    ;;                      (eq (aref (query-font (car (internal-char-font nil ?\u2502))) 0)
-    ;;                          (face-font 'default))))
-    ;;             ?\u2502
-    ;;           ?|)))
     (setq show-trailing-whitespace t)
     (whitespace-mode 1)
     )
