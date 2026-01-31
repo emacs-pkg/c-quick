@@ -1,6 +1,5 @@
-
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.1.9")
+(setq *c-quick-version* "v3.2.0")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -36,8 +35,8 @@
 (global-set-key (kbd "<right>")      'c-quick-right-key)
 (global-set-key (kbd "<left>")       'c-quick-left-key)
 (global-set-key (kbd "C-z")          'undo)
-(global-set-key (kbd "C-S-z")        'undo-redo)
-(global-set-key (kbd "C-M-z")        'undo-redo)
+(global-set-key (kbd "C-S-z")        'undo)
+(global-set-key (kbd "C-M-z")        'undo)
 (global-set-key (kbd "M-w")          'c-quick-copy-region)
 (global-set-key (kbd "C-w")          'c-quick-kill-region)
 (global-set-key (kbd "C-M-\\")       'c-quick-indent-region)
