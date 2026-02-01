@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.5.1")
+(setq *c-quick-version* "v3.6.0")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -689,6 +689,18 @@
     )
   )
 
+(defun c-quick-run-command-in-eshell (dir cmd)
+  (ignore-errors (kill-buffer "*eshell*"))
+  (save-window-excursion
+    (cd dir)
+    (eshell)
+    )
+  (switch-to-buffer-other-window "*eshell*")
+  (goto-char (point-max))
+  (insert cmd)
+  (eshell-send-input)
+  )
+
 (defun c-quick-run-file-in-eshell ()
   (interactive)
   (if (null buffer-file-name) (ding)
@@ -700,21 +712,14 @@
            (cmd-args (read-string (format "Arguments for '%s': " fname)))
            cmd
            )
-      ;;(xdump fext)
-      (setq cmd (format "cd \"%s\" && xrun './%s %s'" dir fname cmd-args))
+      ;; (setq cmd (format "cd \"%s\" && xrun './%s %s'" dir fname cmd-args))
+      (setq cmd (format "xrun './%s %s'" fname cmd-args))
       (ignore-errors
         (set-file-modes (buffer-file-name) (string-to-number "775" 8))
         )
       (delete-other-windows)
-      (ignore-errors (kill-buffer "*eshell*"))
-        (save-window-excursion
-          (eshell)
-          )
-        (switch-to-buffer-other-window "*eshell*")
-        (goto-char (point-max))
-        (insert cmd)
-        (eshell-send-input)
-        (select-window win)
+      (c-quick-run-command-in-eshell dir cmd)
+      (select-window win)
       )
     )
   )
