@@ -1,5 +1,6 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.6.0")
+;;; -*- lexical-binding: t -*-
+(setq *c-quick-version* "v3.6.1")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -837,3 +838,9 @@
             (c-quick-set-mode *c-quick-mode-is-on*)))
 
 (provide 'c-quick)
+
+;; Local Variables:
+;; byte-compile-warnings: (not cl-functions obsolete)
+;; coding: utf-8
+;; indent-tabs-mode: nil
+;; End:
