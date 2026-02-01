@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.4.0")
+(setq *c-quick-version* "v3.4.1")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -665,15 +665,22 @@
   (switch-to-buffer "*Buffer List*")
   )
 
-(defun c-quick-rerun-eshell ()
+(defun c-quick-rerun-eshell (&optional other-window)
   (interactive)
   (condition-case nil
       (kill-buffer "*eshell*")
     (error nil))
-  (save-window-excursion
-    (eshell)
+  (let* ((cwd default-directory))
+    (save-window-excursion
+      (switch-to-buffer "*eshell*")
+      (cd cwd)
+      (eshell)
+      )
+    (if other-window
+        (switch-to-buffer-other-window "*eshell*")
+      (switch-to-buffer "*eshell*")
+      )
     )
-  (switch-to-buffer "*eshell*")
   )
 
 (defun c-quick-run-file-in-eshell ()
