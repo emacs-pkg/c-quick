@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.4.1")
+(setq *c-quick-version* "v3.5.0")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -254,19 +254,23 @@
 
 (defun c-quick-down-key ()
   (interactive)
-  (if (c-quick-mode)
-      (c-quick-slide-down)
-    (c-quick-next-line)
-    )
-  (c-quick-redisplay))
+  (if (eq major-mode 'dired-mode)
+      (dired-next-line 1)
+    (if (c-quick-mode)
+        (c-quick-slide-down)
+      (c-quick-next-line)
+      )
+    (c-quick-redisplay)))
 
 (defun c-quick-up-key ()
   (interactive)
-  (if (c-quick-mode)
-      (c-quick-slide-up)
-    (c-quick-previous-line)
-    )
-  (c-quick-redisplay))
+  (if (eq major-mode 'dired-mode)
+      (dired-previous-line 1)
+    (if (c-quick-mode)
+        (c-quick-slide-up)
+      (c-quick-previous-line)
+      )
+    (c-quick-redisplay)))
 
 (defun c-quick-right-key ()
   (interactive)
