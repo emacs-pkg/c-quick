@@ -1,5 +1,5 @@
 ;; -*- coding: utf-8 -*-
-(setq *c-quick-version* "v3.5.0")
+(setq *c-quick-version* "v3.5.1")
 ;;; c-quick.el --- Intelligent Cursor Movement for GNU Emacs
 ;;
 ;; Copyright (C) 1993-2026 JavaCommons Technologies
@@ -606,9 +606,11 @@
     (ignore-errors
       (delete-window)))
    (t
-    (kill-buffer (current-buffer))
-    (ignore-errors
-      (delete-window)))))
+    (if (= 0 (length (c-quick-list-non-special-buffers)))
+        (kill-emacs)
+      (kill-buffer (current-buffer))
+      (ignore-errors
+        (delete-window))))))
 
 (defun c-quick-kill-other-buffers ()
   (interactive)
@@ -817,6 +819,13 @@
       (push (window-buffer win) lst)
       )
     (message "%S" (reverse lst))))
+
+(defun c-quick-list-non-special-buffers ()
+  (let* ((list (buffer-list))
+         result)
+    (dolist (b list result)
+      (when (not (string-match-p "*" (buffer-name b)))
+        (push (buffer-name b) result)))))
 
 (add-hook 'post-command-hook
           (lambda ()
